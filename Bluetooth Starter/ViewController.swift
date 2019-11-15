@@ -11,11 +11,17 @@ import CoreBluetooth
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var devicesTableView: UITableView!
+    
     var centralManager: CBCentralManager!
-
+    var connectedPeripheral: CBPeripheral!
+    var availableDevices: [CBPeripheral] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         centralManager = CBCentralManager(delegate: self, queue: nil)
+        devicesTableView.dataSource = self
+        devicesTableView.delegate = self
     }
 }
 
@@ -41,6 +47,34 @@ extension ViewController: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        print(peripheral)
+        if !availableDevices.contains(peripheral) {
+            availableDevices.append(peripheral)
+            devicesTableView.reloadData()
+        }
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("Connected!")
+    }
+}
+
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 83
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(availableDevices.count)
+        return availableDevices.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let deviceCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BluetoothPeripheral
+        
+        let device = availableDevices[indexPath.row]
+        
+        deviceCell.deviceNameLabel.text = device.name
+        deviceCell.deviceUUIDLabel.text = device.identifier.uuidString
+        return deviceCell
     }
 }

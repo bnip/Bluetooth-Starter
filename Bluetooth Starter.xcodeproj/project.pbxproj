@@ -16,6 +16,7 @@
 		67548DC7237E194F0093C865 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67548DC5237E194F0093C865 /* LaunchScreen.storyboard */; };
 		67548DD2237E19500093C865 /* Bluetooth_StarterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67548DD1237E19500093C865 /* Bluetooth_StarterTests.swift */; };
 		67548DDD237E19500093C865 /* Bluetooth_StarterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67548DDC237E19500093C865 /* Bluetooth_StarterUITests.swift */; };
+		6774DD2E237E2C6900E6F237 /* BluetoothPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6774DD2D237E2C6900E6F237 /* BluetoothPeripheral.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		67548DD8237E19500093C865 /* Bluetooth StarterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Bluetooth StarterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67548DDC237E19500093C865 /* Bluetooth_StarterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bluetooth_StarterUITests.swift; sourceTree = "<group>"; };
 		67548DDE237E19500093C865 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6774DD2D237E2C6900E6F237 /* BluetoothPeripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothPeripheral.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				67548DB7237E194E0093C865 /* AppDelegate.swift */,
+				6774DD2D237E2C6900E6F237 /* BluetoothPeripheral.swift */,
 				67548DB9237E194E0093C865 /* SceneDelegate.swift */,
 				67548DBB237E194E0093C865 /* ViewController.swift */,
 				67548DBD237E194E0093C865 /* Main.storyboard */,
@@ -262,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6774DD2E237E2C6900E6F237 /* BluetoothPeripheral.swift in Sources */,
 				67548DC2237E194E0093C865 /* Bluetooth_Starter.xcdatamodeld in Sources */,
 				67548DBC237E194E0093C865 /* ViewController.swift in Sources */,
 				67548DB8237E194E0093C865 /* AppDelegate.swift in Sources */,
