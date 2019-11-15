@@ -55,6 +55,18 @@ extension ViewController: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("Connected!")
+        print(peripheral)
+        connectedPeripheral.discoverServices(nil)
+    }
+}
+
+extension ViewController: CBPeripheralDelegate {
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+        guard let services = peripheral.services else { return }
+
+        for service in services {
+          print(service)
+        }
     }
 }
 
@@ -64,7 +76,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(availableDevices.count)
         return availableDevices.count
     }
     
@@ -72,9 +83,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let deviceCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BluetoothPeripheral
         
         let device = availableDevices[indexPath.row]
-        
         deviceCell.deviceNameLabel.text = device.name
         deviceCell.deviceUUIDLabel.text = device.identifier.uuidString
+        
         return deviceCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        connectedPeripheral = availableDevices[indexPath.row]
+        connectedPeripheral.delegate = self
+        centralManager.stopScan()
+        centralManager.connect(connectedPeripheral)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -16,6 +16,5 @@ class BluetoothPeripheral : UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
 }
